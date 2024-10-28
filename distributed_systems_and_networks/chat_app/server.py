@@ -52,7 +52,7 @@ class Server:
             client_message = client_socket.recv(1024).decode()
             # If the message is quit, remove the client from the list of clients and
             # close down the socket.
-            if client_message.strip().endswith("quit") or not client_message.strip():
+            if client_message.strip().endswith("quit"):
                 self.broadcast_message(
                     client_name, client_full_name + " has left the session!")
                 Server.server_clients.remove(client)
@@ -61,7 +61,7 @@ class Server:
                 break
             else:
                 # Send the message to all other clients
-                full_client_message = client_full_name + ": " + client_message
+                full_client_message = client_full_name + ": \n " + client_message
                 self.broadcast_message(client_full_name, full_client_message)
 
     # Loop through the clients and send the message down each socket.
@@ -72,6 +72,9 @@ class Server:
             client_full_name = client['client_full_name']
             if client_full_name != sender_name:
                 client_socket.send(message.encode())
+            else:
+                own_message = message.replace(sender_name, "You", 1)
+                client_socket.send(own_message.encode())
 
 
 if __name__ == '__main__':
