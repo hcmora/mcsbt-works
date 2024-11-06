@@ -6,3 +6,5 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+/mcsbt-env
+programming_with_python/movies_module/.DS_Store
