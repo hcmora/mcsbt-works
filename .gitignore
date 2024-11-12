@@ -163,3 +163,5 @@ cython_debug/
 #.idea/
 
 api_keys.py
+programming_with_python/movies_module/__pycache__/movies.cpython-311.pyc
+*.pyc
